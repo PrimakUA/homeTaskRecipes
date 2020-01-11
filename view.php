@@ -3,7 +3,8 @@ require_once('Connection.php');
 
 $itemId = $_GET['id'];
 $connection = Connection::getInstance();
-$query = $connection->getItem($itemId);
+$table = 'recipes';
+$query = $connection->getItem($table, $itemId);
 $result = $query['0'];
 ?>
 
@@ -43,7 +44,7 @@ $result = $query['0'];
                     <a class="nav-link" href="index.php">My recipes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Ingredients</a>
+                    <a class="nav-link" href="ingredients.php">Ingredients</a>
                 </li>
             </ul>
         </div>

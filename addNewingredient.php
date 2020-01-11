@@ -3,39 +3,33 @@ session_start();
 require_once('Connection.php');
 
 $connection = Connection::getInstance();
-$table = 'recipes';
+$table = 'ingredients';
 $id = 0;
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $getOne = $connection->getItem($table, $id);
     $getItem = $getOne[0];
     $name = $getItem['name'];
-    $description = $getItem['description'];
-    $recipes = $getItem['recipes'];
 } else {
     $name = '';
-    $description = '';
-    $recipes = '';
 }
-if (isset($_POST['nameRecipes'])) $name = $_POST['nameRecipes'];
-if (isset($_POST['description'])) $description = $_POST['description'];
-if (isset($_POST['recipes'])) $recipes = $_POST['recipes'];
+if (isset($_POST['nameingredient'])) $name = $_POST['nameingredient'];
 
 if (isset($_POST['send'])) {
 
     if ($_POST['send'] != 0) {
         $id = $_POST['send'];
-        $edit = $connection->edit("UPDATE `$table` SET `name`='$name', `description`='$description', `recipes`='$recipes' WHERE `id`='$id'");
+        $edit = $connection->edit("UPDATE `$table` SET `name`='$name' WHERE `id`='$id'");
         if ($edit == true) {
             $_SESSION['success'] = "$name" . " Successfully edited";
-            Header('Location: index.php');
+            Header('Location: ingredients.php');
             exit;
         }
     } else {
-        $save = $connection->save("INSERT INTO `$table` (`name`, `description`, `recipes`) VALUES ('$name', '$description', '$recipes')");
+        $save = $connection->save("INSERT INTO `$table` (`name`) VALUE ('$name')");
         if ($save == true) {
             $_SESSION['success'] = "$name" . " Successfully save";
-            Header('Location: index.php');
+            Header('Location: ingredients.php');
             exit;
         }
     }
@@ -49,7 +43,7 @@ if (isset($_POST['send'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Recipes</title>
+    <title>Add ingredient</title>
 </head>
 
 <body>
@@ -84,29 +78,15 @@ if (isset($_POST['send'])) {
         </div>
         <div class="col-10 row">
             <div class="container">
-                <h1>Add recipes</h1>
+                <h1>Add ingredient</h1>
 
-                <form method="post" action="addNewRecipes.php">
+                <form method="post" action="addNewingredient.php">
                     <input type="hidden" name="send" value="<?php echo $id; ?>">
                     <div class="form-group row">
                         <label for="nameRecipes" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Name recipes" name="nameRecipes"
+                            <input type="text" class="form-control" placeholder="Name ingredient" name="nameingredient"
                                    value="<?php echo $name; ?>" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="description" class="col-sm-2 col-form-label">Description</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" placeholder="Description" name="description" rows="2"
-                                      required><?php echo $description; ?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="recipes" class="col-sm-2 col-form-label">Recipes</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" placeholder="Add recipes" name="recipes" rows="5"
-                                      required><?php echo $recipes; ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -28,32 +28,32 @@ class Connection
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function save($name, $description, $recipes)
+    public function save($query)
     {
-        $this->query("INSERT INTO `recipes` (`name`, `description`, `recipes`) VALUES ('$name', '$description', '$recipes')");
+        $this->query("$query");
         return true;
     }
 
-    public function delete($id)
+    public function delete($table, $id)
     {
-        $this->query("DELETE FROM `recipes` WHERE id='$id'");
+        $this->query("DELETE FROM `$table` WHERE id='$id'");
         return true;
 
     }
 
-    public function edit($id, $name, $description, $recipes)
+    public function edit($query)
     {
-        $this->query("UPDATE `recipes` SET `name`='$name', `description`='$description', `recipes`='$recipes' WHERE `id`='$id'");
+        $this->query("$query");
         return true;
     }
 
-    public function getAll()
+    public function getAll($table)
     {
-        return $result = $this->query('SELECT `id`, `name`, `description` FROM `recipes`');
+        return $result = $this->query("SELECT * FROM `$table`");
     }
 
-    public function getItem($id)
+    public function getItem($table, $id)
     {
-        return $result = $this->query("SELECT * FROM `recipes` WHERE id='$id'");
+        return $result = $this->query("SELECT * FROM `$table` WHERE id='$id'");
     }
 }

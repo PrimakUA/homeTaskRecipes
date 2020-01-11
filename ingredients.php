@@ -3,7 +3,7 @@ session_start();
 require_once('Connection.php');
 
 $connection = Connection::getInstance();
-$table = 'recipes';
+$table = 'ingredients';
 $allInDatabase = $connection->getAll($table);
 $quantity = count($allInDatabase);
 
@@ -16,7 +16,7 @@ $quantity = count($allInDatabase);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Recipes</title>
+    <title>Ingredients</title>
 </head>
 
 <body>
@@ -54,10 +54,10 @@ $quantity = count($allInDatabase);
                 <div class="container shadow-none p-3 mb-5 rounded">
                     <div class="row">
                         <div class="col-md-3">
-                            <h2>My recipes</h2>
+                            <h2>Ingredients</h2>
                         </div>
                         <div class="col-md-2 ml-auto">
-                            <a class="btn btn-outline-secondary" href="addNewRecipes.php" role="button">Add recipes</a>
+                            <a class="btn btn-outline-secondary" href="addNewingredient.php" role="button">Add ingredient</a>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,7 @@ $quantity = count($allInDatabase);
                 <table class="table table table-sm table-hover" width="80%" border="1">
                     <thead>
                     <tr>
-                        <th scope="col" width="35%">Recipes</th>
-                        <th scope="col" width="60%">Description</th>
+                        <th scope="col" width="95%">Ingredient name</th>
                         <th scope="col" width="5%">Actions</th>
                     </tr>
                     </thead>
@@ -83,11 +82,9 @@ $quantity = count($allInDatabase);
                         $row = $allInDatabase["$i"];
                         echo '<tr>
                                 <td>' . $row['name'] . '</td>
-                                <td>' . $row['description'] . '</td>
                                 <td>
-                                <a href="view.php?id=' . $row['id'] . '">V</a>
-                                <a href="addNewRecipes.php?id=' . $row['id'] . '">E</a>
-                                <a href="#" onclick="if(window.confirm(\'Are you sure you want to delete the recipe?\')) { window.location = \'deleteItem.php?id=' . $row['id'] . '&table=' . $table . '&place=' . 'index' . '\'; } return false;">D</a>
+                                <a href="addNewingredient.php?id=' . $row['id'] . '">E</a>
+                                <a href="#" onclick="if(window.confirm(\'Are you sure you want to delete the recipe?\')) { window.location = \'deleteItem.php?id='. $row['id'] . '&table=' . $table . '&place=ingredients' . '\'; } return false;">D</a>
                             </td>
                         </tr>';
                     }
