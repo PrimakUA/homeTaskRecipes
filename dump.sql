@@ -40,6 +40,31 @@ INSERT INTO `ingredients` VALUES (1,'Картошка'),(2,'Огурец'),(3,'�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `quty`
+--
+
+DROP TABLE IF EXISTS `quty`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `quty` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `recipes_id` int(11) NOT NULL,
+  `ingredient_id` int(11) NOT NULL,
+  `quty` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `quty`
+--
+
+LOCK TABLES `quty` WRITE;
+/*!40000 ALTER TABLE `quty` DISABLE KEYS */;
+/*!40000 ALTER TABLE `quty` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `recipes`
 --
 
@@ -74,4 +99,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-11 10:33:25
+-- Dump completed on 2020-01-11 11:47:03
