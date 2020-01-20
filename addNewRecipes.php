@@ -84,7 +84,7 @@ if (isset($_POST['send'])) {
         </div>
         <div class="col-10 row">
             <div class="container">
-                <h1>Add recipes</h1>
+                <h1>Add recipe</h1>
 
                 <form method="post" action="addNewRecipes.php">
                     <input type="hidden" name="send" value="<?php echo $id; ?>">
@@ -105,13 +105,64 @@ if (isset($_POST['send'])) {
                     <div class="form-group row">
                         <label for="recipes" class="col-sm-2 col-form-label">Recipes</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" placeholder="Add recipes" name="recipes" rows="5"
+                            <textarea class="form-control" placeholder="Add recipes" name="recipes" rows="3"
                                       required><?php echo $recipes; ?></textarea>
                         </div>
                     </div>
+
+                    <div class="container shadow-none p-3 mb-5 rounded">
+                        <div class="row">
+                            <div class="col-4">
+                                <h3>Ingredients</h3>
+                            </div>
+                            <div class="col">
+                                <h3>Qty</h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected="">Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Qty" name="qty"
+                                           value="" required>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="col-md ml-auto">
+                                        <button type="button" class="btn btn-danger">Del</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                                <div class="col-auto mr-auto">
+                                    <button type="button" class="btn btn-primary">Add ingredient</button>
+                                </div>
+                                <div class="col-auto">
+                                     If not listed you can add:
+                                    <button type="button" class="btn btn-primary">Create new ingredient</button>
+                                </div>
+                            </div>
+
+                    </div>
                     <div class="form-group row">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="col-md-2 ml-auto">
+                            <button type="submit" class="btn btn-primary">Save recipe</button>
                         </div>
                     </div>
                 </form>
